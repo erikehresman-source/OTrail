@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OTrail Diagnostics — 404</title>
+<style>
+body { font-family: monospace; background:#111; color:#eee; padding:20px; }
+h1 { color:#f66; }
+.ok { color:#6f6; }
+.fail { color:#f66; }
+pre { background:#222; padding:10px; border:1px solid #444; padding:12px; }
+</style>
+</head>
+<body>
+<h1>OTrail Diagnostics — 404 Intercept</h1>
+<p>This page replaced GitHub’s generic 404. Something didn’t resolve — let’s see what’s broken.</p>
+
+<div id="report"><em>Running checks…</em></div>
+
+<script>
+(async () => {
+  const files = [
+    './index.html',
+    './manifest.webmanifest',
+    './service-worker.js',
+    './icon-152.png',
+    './icon-192.png',
+    './icon-512.png'
+  ];
+  let out = [];
+  for (let f of files) {
+    try {
+      const res = await fetch(f+'?v='+Date.now(), {cache:'no-store'});
+      out.push(`${f} → ${res.status} ${res.ok ? 'OK' : 'FAIL'}`);
+    } catch (err) {
+      out.push(`${f} → ERROR ${err}`);
+    }
+  }
+  document.getElementById('report').innerHTML = 
+    "<pre>" + out.map(r => r.includes("OK") ?
+      `<span class='ok'>${r}</span>` : `<span class='fail'>${r}</span>`).join("\n") + "</pre>" +
+    `<h2>Location</h2><pre>${location.href}</pre>` +
+    `<h2>User Agent</h2><pre>${navigator.userAgent}</pre>`;
+})();
+</script>
+</body>
+</html>
