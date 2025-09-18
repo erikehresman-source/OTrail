@@ -1,5 +1,5 @@
 // Service Worker — OTrail Welcome Overlay Build v7
-const CACHE = 'otrail-cache-v12';
+const CACHE = 'otrail-cache-v13';
 const ASSETS = [
   './',
   './index.html',
