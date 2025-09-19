@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Oregon Trail Lite</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: sans-serif;
+            color: white;
+        }
+        .screen {
+            display: none;
+            height: 100vh;
+            width: 100vw;
+            background-size: cover;
+            background-position: center;
+        }
+        #welcomeScreen, #partySetup, #outfitter, #trailLog {
+            text-align: center;
+            padding: 20px;
+        }
+        .overlay-box {
+            background: rgba(0,0,0,0.6);
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 8px;
+            max-width: 600px;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="welcomeScreen" class="screen" style="display:block;">
+    <div class="overlay-box">
+        <h2>Welcome to the trading post, settler!</h2>
+        <p>Before you begin, here are some tips:</p>
+        <ul>
+            <li>Choose rations wisely.</li>
+            <li>Rename party members.</li>
+            <li>Pick a profession carefully.</li>
+        </ul>
+        <button id="continueWelcome">Continue</button>
+    </div>
+</div>
+
+<div id="partySetup" class="screen" style="background-image:url('assets/images/independence_missouri.png');">
+    <div class="overlay-box">
+        <h2>Independence, Missouri — 1848</h2>
+        <p>You’ve arrived in Independence, Missouri. Before leaving, name your party, choose your profession, and decide when to depart.</p>
+        <div>
+            <label>Party Member Names:</label><br>
+            <input type="text" id="member1" placeholder="Leader"><br>
+            <input type="text" id="member2" placeholder="Member 2"><br>
+            <input type="text" id="member3" placeholder="Member 3"><br>
+            <input type="text" id="member4" placeholder="Member 4"><br>
+        </div>
+        <div>
+            <label>Choose Profession:</label>
+            <select id="profession">
+                <option>Banker</option>
+                <option>Farmer</option>
+                <option>Carpenter</option>
+            </select>
+        </div>
+        <div>
+            <label>Choose Departure Month:</label>
+            <select id="month">
+                <option>March</option>
+                <option>April</option>
+                <option>May</option>
+                <option>June</option>
+                <option>July</option>
+            </select>
+        </div>
+        <button id="startSetup">Continue to Outfitter</button>
+    </div>
+</div>
+
+<div id="outfitter" class="screen" style="background-image:url('assets/images/shop_background.png');">
+    <div class="overlay-box">
+        <h2>Outfitter — Buy your supplies</h2>
+        <p>You’ll need at least 1 oxen team and some food to begin.</p>
+        <div>
+            Oxen team (2 oxen): <input type="number" id="oxen" value="1"> ($40 each)<br>
+            Food (pounds): <input type="number" id="food" value="200"> ($0.20/lb)<br>
+            Clothing sets: <input type="number" id="clothes" value="4"> ($10 each)<br>
+            Spare parts kits: <input type="number" id="parts" value="2"> ($15 each)<br>
+            Ammo (20/box): <input type="number" id="ammo" value="6"> ($2/box)<br>
+        </div>
+        <p>Budget: $<span id="budget">300.00</span></p>
+        <button id="beginJourney">Begin Journey</button>
+    </div>
+</div>
+
+<div id="trailLog" class="screen" style="background-color:#123;">
+    <div class="overlay-box">
+        <h2>Trail Log</h2>
+        <div id="logEntries">Your journey begins...</div>
+        <button id="nextDay">Next Day</button>
+    </div>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>
