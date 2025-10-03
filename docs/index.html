@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Trail Sim (MVP F1–F3)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/styles/game.css">
+</head>
+<body>
+  <!-- Debug overlay (toggle later if you want) -->
+  <div id="debugOverlay" class="debug-overlay" aria-live="polite"></div>
+
+  <!-- Mini-map placeholder (we’ll wire movement in a later patch) -->
+  <div id="minimap" class="minimap" hidden>
+    <div class="minimap-track">
+      <div id="minimap-wagon" class="wagon" title="Wagon"></div>
+    </div>
+    <div id="minimap-label" class="minimap-label">0%</div>
+  </div>
+
+  <!-- Welcome Screen -->
+  <section id="screen-welcome" class="screen active" aria-labelledby="welcome-title">
+    <div class="panel">
+      <h1 id="welcome-title">Welcome to the Trail</h1>
+      <p>This is a survival travel sim from Independence, Missouri to the Willamette Valley.</p>
+      <button id="btn-to-setup" class="btn">Begin Setup</button>
+    </div>
+  </section>
+
+  <!-- Party Setup Screen (F2) -->
+  <section id="screen-setup" class="screen" aria-labelledby="setup-title">
+    <div class="panel">
+      <h2 id="setup-title">Party Setup</h2>
+
+      <fieldset>
+        <legend>Party Names (Leader + 3 Companions)</legend>
+        <input id="name1" placeholder="Leader" aria-label="Leader name">
+        <input id="name2" placeholder="Companion 2" aria-label="Companion 2 name">
+        <input id="name3" placeholder="Companion 3" aria-label="Companion 3 name">
+        <input id="name4" placeholder="Companion 4" aria-label="Companion 4 name">
+      </fieldset>
+
+      <fieldset>
+        <legend>Profession</legend>
+        <select id="profession">
+          <option value="banker">Banker</option>
+          <option value="farmer">Farmer</option>
+          <option value="carpenter">Carpenter</option>
+          <option value="doctor">Doctor</option>
+          <option value="hunter">Hunter</option>
+        </select>
+      </fieldset>
+
+      <fieldset>
+        <legend>Departure Month</legend>
+        <select id="month">
+          <option>March</option>
+          <option>April</option>
+          <option>May</option>
+          <option>June</option>
+          <option>July</option>
+        </select>
+      </fieldset>
+
+      <div class="row">
+        <button id="btn-to-outfitter" class="btn">Continue to Outfitter</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Outfitter Screen (F3) -->
+  <section id="screen-outfitter" class="screen" aria-labelledby="outfitter-title">
+    <div class="panel">
+      <h2 id="outfitter-title">Outfitter</h2>
+      <p>Profession: <strong id="profLabel">—</strong> &nbsp;|&nbsp; Starting Budget: $<strong id="budgetStart">0</strong></p>
+      <p>Remaining: $<strong id="budgetRemaining">0</strong></p>
+
+      <div class="grid">
+        <label>Oxen team (2 oxen): 
+          <input id="oxen" type="number" min="0" step="1" value="1">
+          <span class="hint">($40 per team) &nbsp; Must have ≥ 1</span>
+        </label>
+
+        <label>Food (pounds): 
+          <input id="food" type="number" min="0" step="10" value="200">
+          <span class="hint">($0.20 per lb)</span>
+        </label>
+
+        <label>Clothing (sets): 
+          <input id="clothes" type="number" min="0" step="1" value="4">
+          <span class="hint">($10 per set)</span>
+        </label>
+
+        <label>Spare parts (kits):
+          <input id="parts" type="number" min="0" step="1" value="2">
+          <span class="hint">($15 per kit)</span>
+        </label>
+
+        <label>Ammo (boxes of 20):
+          <input id="ammo" type="number" min="0" step="1" value="6">
+          <span class="hint">($2 per box)</span>
+        </label>
+      </div>
+
+      <div class="row">
+        <button id="btn-begin" class="btn btn-primary" disabled>Begin Journey</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trail Screen (stubbed F4 handoff) -->
+  <section id="screen-trail" class="screen" aria-labelledby="trail-title">
+    <div class="panel">
+      <h2 id="trail-title">Trail Log</h2>
+      <div id="log" class="log" role="log" aria-live="polite">
+        <div>Day 1: Your journey begins…</div>
+      </div>
+      <div class="row">
+        <button id="btn-next-day" class="btn">Next Day</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scripts -->
+  <script src="assets/scripts/game.js" defer></script>
+</body>
+</html>
